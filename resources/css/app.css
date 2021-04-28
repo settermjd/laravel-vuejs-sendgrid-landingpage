@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .h1 {
+        @apply ml-4 mr-4 mb-4 text-3xl leading-7 font-bold;
+    }
+    .body-text {
+        @apply ml-4 mr-4 mt-2 text-gray-600 text-lg;
+    }
+    .content {
+        @apply relative flex justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0;
+    }
+    .button-orange {
+        @apply max-w-full w-full mt-2 border-2 bg-yellow-500 p-6 rounded-lg text-white text-2xl font-bold capitalize shadow;
+    }
+    .link {
+        @apply underline text-blue-600;
+    }
+    .form-wrapper {
+        @apply ml-4 mt-2 mr-4 text-gray-600 text-sm;
+    }
+    .form-email {
+        @apply rounded-lg border-4 mt-2 p-4 border-yellow-500 text-2xl max-w-full w-full;
+    }
+    .form-errors {
+        @apply bg-red-300 rounded-md p-4;
+    }
+}
