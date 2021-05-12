@@ -642,6 +642,12 @@ video {
   width: 100%;
 }
 
+.link {
+  --tw-text-opacity: 1;
+  color: rgba(37, 99, 235, var(--tw-text-opacity));
+  text-decoration: underline;
+}
+
 .form-wrapper {
   font-size: 0.875rem;
   line-height: 1.25rem;
