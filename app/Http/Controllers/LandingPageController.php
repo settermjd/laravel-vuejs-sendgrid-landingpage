@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Subscribed;
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -40,6 +41,27 @@ class LandingPageController extends Controller
             return response()
                 ->json(json_encode($validator->errors()))
                 ->setStatusCode(422);
+        }
+
+        $client = new \SendGrid(env('SENDGRID_API_KEY'));
+        $resp = $client->client
+            ->marketing()
+            ->contacts()
+            ->put([
+                'contacts' => [
+                    [
+                        'email' => 'freddie.mercury@example.org',
+                    ],
+                ],
+            ]);
+
+        if ($resp->statusCode() !== 202) {
+            $body = json_decode($resp->body());
+            return response()->json([
+                'status' => false,
+                'message' => 'subscription failed',
+                'reason' => $body->errors,
+            ])->setStatusCode($resp->statusCode());
         }
 
         try {
