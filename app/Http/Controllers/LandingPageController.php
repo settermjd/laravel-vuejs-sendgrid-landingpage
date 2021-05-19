@@ -34,7 +34,7 @@ class LandingPageController extends Controller
     public function signup(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required'
+            'email' => 'required|email:rfc,dns'
         ]);
 
         if ($validator->fails()) {
@@ -50,7 +50,7 @@ class LandingPageController extends Controller
             ->put([
                 'contacts' => [
                     [
-                        'email' => 'freddie.mercury@example.org',
+                        'email' => $request->input('email'),
                     ],
                 ],
             ]);
